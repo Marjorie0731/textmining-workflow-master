@@ -9,7 +9,7 @@ print('Writing raw data to file')
 
 os.makedirs('../../data', exist_ok=True)
 
-f = open('../../team13_covid19_briefing_usa/team13_covid19_briefing_usa.zip', 'wb')
+f = open('../../data/team13_covid19_briefing_usa/team13_covid19_briefing_usa.zip', 'wb')
 
 f.write(data.content)
 
