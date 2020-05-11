@@ -5,7 +5,7 @@
 
 prep: ../../gen/data-preparation/output/dataset.csv
 
-../../data/fortnite-rawdata.zip: download.py
+../../data/data/team13_covid19_briefing_usa.zip: download.py
 	python download.py
 
 ../../gen/data-preparation/temp/unzipping.log: unzip.py ../../data/team13_covid19_briefing_usa.zip
