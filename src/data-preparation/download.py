@@ -18,4 +18,4 @@ if not os.path.exists('../../data/team13_covid19_briefing_usa.zip'):
 
     print('Done.')
 else:
-    print('Raw data is downlowned already, skip to next step')
+    print('Raw data is downloaded already, skip to next step')
