@@ -1,18 +1,21 @@
 import requests
 import os
 
-print('Downloading raw data... please wait.')
+if not os.path.exists('../../data/team13_covid19_briefing_usa.zip'):
+    print('Downloading raw data... please wait.')
 
-data = requests.get('https://uvt-public.s3.eu-central-1.amazonaws.com/data/rsm2020/team13_covid19_briefing_usa.zip')
+    data = requests.get('https://uvt-public.s3.eu-central-1.amazonaws.com/data/rsm2020/team13_covid19_briefing_usa.zip')
 
-print('Writing raw data to file')
+    print('Writing raw data to file')
 
-os.makedirs('../../data', exist_ok=True)
+    os.makedirs('../../data', exist_ok=True)
 
-f = open('../../data/team13_covid19_briefing_usa/team13_covid19_briefing_usa.zip', 'wb')
+    f = open('../../data/team13_covid19_briefing_usa.zip', 'wb')
 
-f.write(data.content)
+    f.write(data.content)
 
-f.close()
+    f.close()
 
-print('Done.')
+    print('Done.')
+else:
+    print('Raw data is downlowned already, skip to next step')
