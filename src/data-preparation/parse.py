@@ -8,12 +8,11 @@ outfile = open('../../gen/data-preparation/temp/parsed-data.csv', 'w', encoding 
 
 # att_list = ['id', 'created_at', 'text', 'user.location']
 
-outfile.write('id\tcreated_at\ttext\tlocation\n')
+outfile.write('id\tcreated_at\ttext\tlocation\tRT_count\n')
 
 cnt = 0
 for line in con:
     if (len(line)<=5): continue
-
 
     obj = json.loads(line.replace('\n',''))
 
@@ -38,7 +37,7 @@ for line in con:
         if h['text'] in ht_filter:
             filter_flag = True
     if filter_flag:
-        outfile.write(obj.get('id_str')+'\t'+obj.get('created_at')+'\t'+text + '\t' + str(user_location) + str(cnt_retweet)+'\n')
+        outfile.write(obj.get('id_str')+'\t'+obj.get('created_at')+'\t'+text + '\t' + str(user_location) + '\t'+ str(cnt_retweet)+'\n')
         cnt += 1
         print(str(cnt) + ' parsed')
     # if (cnt>1000): break
