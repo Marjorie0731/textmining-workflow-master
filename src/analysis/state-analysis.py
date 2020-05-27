@@ -52,6 +52,8 @@ for i, j in data.iterrows():
 # state
     try:
         state = j['state']
+        if state == 'other':
+            continue
         idx = state_ab.index(state)
         tweet_cnt[idx] += 1
         avg_polarity[idx] += j['polarity']
