@@ -64,6 +64,7 @@ for i, j in data.iterrows():
 for p in range(len(avg_polarity)):
     if tweet_cnt[p]!=0:
         avg_polarity[p] = avg_polarity[p]/tweet_cnt[p]
+        avg_polarity[p] = format(avg_polarity[p], '.3f')
     else:
         avg_polarity[p] = 0
 data.head()
