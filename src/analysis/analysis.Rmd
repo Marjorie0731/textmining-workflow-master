@@ -18,7 +18,7 @@ st <- fread('../../gen/analysis/temp/state-analysis.csv')
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-When you click the **Knit** button in RStudio,a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. 
+When you click the **Knit** button in RStudio,a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
 
 You can also **knit** the document from the command line, see the example in the `makefile`.
 
@@ -42,17 +42,16 @@ hist(dt$polarity)
 ```{r}
 # Overlaid histograms
 ggplot(dt, aes(x=polarity, color=retweet)) +
-  geom_histogram(fill="white", alpha=0.5, position="identity") + ggtitle('Some histogram')
+  geom_histogram(fill="white", alpha=0.5, position="identity") + ggtitle('histogram of tweet polarity')
 ```
 
-```{r}
+```{r fig.width = 15}
 # tweet count in different states
 # B: Blue state | R: Red state | T: Tossup state
-ggplot(data=st, mapping=aes(x=state, y=tweet_cnt, fill=BR))+geom_bar(stat='identity')+geom_text(stat='identity',aes(label=tweet_cnt), vjust=1.6, color="Black", size=4.5)+scale_fill_manual(values=c("B"="blue", "R"="Red", "T"="orange"))
-```{r}
+ggplot(data=st, mapping=aes(x=state, y=tweet_cnt, fill=BR))+geom_bar(stat='identity')+geom_text(stat='identity',aes(label=tweet_cnt), vjust=1.6, color="Black", size=4.5)+scale_fill_manual(values=c("B"="blue", "R"="Red", "T"="orange"))+ggtitle('Number of tweet in different state')+ theme(plot.title = element_text(size = 22))
 
-```{r}
+```{r fig.width = 15}
 # tweet average polarity in different states
 # B: Blue state | R: Red state | T: Tossup state
-ggplot(data=st, mapping=aes(x=state, y=avg_polarity, fill=BR))+geom_bar(stat='identity')+geom_text(stat='identity',aes(label=avg_polarity), vjust=1.6, color="Black", size=4.5)+scale_fill_manual(values=c("B"="blue", "R"="Red", "T"="orange"))
+ggplot(data=st, mapping=aes(x=state, y=avg_polarity, fill=BR))+geom_bar(stat='identity')+geom_text(stat='identity',aes(label=avg_polarity), vjust=1.6, color="Black", size=4.5)+scale_fill_manual(values=c("B"="blue", "R"="Red", "T"="orange"))+ggtitle('Polarity mean of tweet in different state')+ theme(plot.title = element_text(size = 22))
 ```{r}
