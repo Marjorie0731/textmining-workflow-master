@@ -1,8 +1,8 @@
-# Example of a reproducible research workflow: JSON parsing and text mining in Python, R + RMarkdown
+#  Reproducible research workflow: JSON parsing and text mining in Python, R + RMarkdown
 
-This is a basic example workflow using GNU Make, Python and R for a reproducible research workflow, following the principles of [tilburgsciencehub.com](http://tilburgsciencehub.com/workflow). Please use this template in combination with our tutorial at [http://tilburgsciencehub.com/tutorial](http://tilburgsciencehub.com/tutorial).
+This is a textmining and statistics analysis workflow using GNU Make, Python and R for a reproducible research workflow.
 
-The main aim of this repository is to have a clean and basic structure, which can be easily adjusted to use in an actual project. In this example project, the following is done:
+In this RSM project, the following is done:
 - Pipeline stage "data-preparation"
   - Download raw JSON data in a zip file
   - Unzip data
