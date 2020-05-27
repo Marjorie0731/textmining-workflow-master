@@ -11,6 +11,7 @@ library(ggplot2)
 
 # read final data
 dt <- fread('../../gen/analysis/temp/preclean.csv')
+st <- fread('../../gen/analysis/temp/state-analysis.csv')
 ```
 
 ## Some rudimentary analysis in Markdown
@@ -28,6 +29,10 @@ You can also **knit** the document from the command line, see the example in the
 summary(dt)
 ```
 
+```{r}
+summary(st)
+```
+
 ### Plots
 
 ```{r}
@@ -40,3 +45,14 @@ ggplot(dt, aes(x=polarity, color=retweet)) +
   geom_histogram(fill="white", alpha=0.5, position="identity") + ggtitle('Some histogram')
 ```
 
+```{r}
+# tweet count in different states
+# B: Blue state | R: Red state | T: Tossup state
+ggplot(data=st, mapping=aes(x=state, y=tweet_cnt, fill=BR))+geom_bar(stat='identity')+geom_text(stat='identity',aes(label=tweet_cnt), vjust=1.6, color="Black", size=4.5)+scale_fill_manual(values=c("B"="blue", "R"="Red", "T"="orange"))
+```{r}
+
+```{r}
+# tweet average polarity in different states
+# B: Blue state | R: Red state | T: Tossup state
+ggplot(data=st, mapping=aes(x=state, y=avg_polarity, fill=BR))+geom_bar(stat='identity')+geom_text(stat='identity',aes(label=avg_polarity), vjust=1.6, color="Black", size=4.5)+scale_fill_manual(values=c("B"="blue", "R"="Red", "T"="orange"))
+```{r}
