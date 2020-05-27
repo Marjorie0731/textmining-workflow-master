@@ -32,14 +32,14 @@ state_ab = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA",
             "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
             "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
             "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
-            "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY", "other"]
+            "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
 
 
 column = ['state', 'tweet_cnt', 'avg_polarity', 'B/R']
 
-tweet_cnt = [0 for i in range(52)]
-avg_polarity = [0 for i in range(52)]
-BR = [0 for i in range(52)]
+tweet_cnt = [0 for i in range(51)]
+avg_polarity = [0 for i in range(51)]
+BR = [0 for i in range(51)]
 
 # Blue/Red state classify
 for idx in range(len(BR)):
