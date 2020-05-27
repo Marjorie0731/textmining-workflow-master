@@ -2,7 +2,7 @@ import pandas as pd
 from textblob import TextBlob
 import os
 
-data = pd.read_csv('../../gen/data-preparation/temp/parsed-data.csv', sep = '\t', error_bad_lines=False)
+data = pd.read_csv('../../gen/data-preparation/temp/parsed-data.csv', sep='\t')
 data.head()
 
 
@@ -63,11 +63,11 @@ for i, j in data.iterrows():
     try:
         blob = TextBlob(j['text'])
         data.loc[i, 'polarity'] = blob.sentiment.polarity
-        data.loc[i, 'subjectivity'] = blob.sentiment.subjectivity
 
     except:
-        data.loc[i, 'polarity'] = ''
-        data.loc[i, 'subjectivity'] = ''
+        print(str(i)+' textblob error')
+        print(j)
+        data.loc[i, 'polarity'] = 0
 
 # State classification
     try:
@@ -80,13 +80,18 @@ for i, j in data.iterrows():
             usa_cnt += 1
 
     except:
-        data.loc[i, 'state'] = ''
+        print(str(i)+' state error')
+        print(j)
+        data.loc[i, 'state'] = 'other'
+        other_cnt += 1
 
 data.head()
+# for i, j in data.iterrows():
+#     print(j)
 
 os.makedirs('../../gen/data-preparation/output/', exist_ok=True)
 
-data.to_csv('../../gen/data-preparation/output/dataset.csv', index = False)
+data.to_csv('../../gen/data-preparation/output/dataset.csv', index = False, sep='\t')
 
 
 print('textmining and state classification done.')
