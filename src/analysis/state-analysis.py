@@ -107,7 +107,7 @@ for idx in range(len(state_ab)):
         continue
 
 for i in range(len(BRT_avg_polarity)):
-    BRT_avg_polarity[i] = BRT_avg_polarity[i]/BRT_tcnt[i]
+    BRT_avg_polarity[i] = float(format(BRT_avg_polarity[i]/BRT_tcnt[i], '.3f'))
 
 bt = {
     'state':BRT,
