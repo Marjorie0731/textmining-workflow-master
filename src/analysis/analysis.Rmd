@@ -15,13 +15,6 @@ st <- fread('../../gen/analysis/temp/state-analysis.csv')
 bt <- fread('../../gen/analysis/temp/BRstate-analysis.csv')
 ```
 
-## Some rudimentary analysis in Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button in RStudio,a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. 
-
-You can also **knit** the document from the command line, see the example in the `makefile`.
 
 
 ### Summary statistics
@@ -37,16 +30,16 @@ summary(bt)
 
 ### Plots
 
-```{r fig.width=10 fig.height = 15 }
+```{r fig.width=10,fig.height = 15 }
 # tweet count in different states
 # B: Blue state | R: Red state | T: Tossup state
-ggplot(data=st, mapping=aes(x=reorder(state, tweet_cnt),y = tweet_cnt, fill=BR))+geom_bar(stat='identity')+coord_flip()+geom_text(stat='identity',aes(label=tweet_cnt), vjust=1.6, color="Black", size=4.5)+scale_fill_manual(values=c("B"="blue", "R"="Red", "T"="orange"))+ggtitle('Number of tweet count in different state')+labs(x = NULL,y = 'Number of tweets')
+ggplot(data=st, mapping=aes(x=reorder(state, tweet_cnt),y = tweet_cnt, fill=BR))+geom_bar(stat='identity')+coord_flip()+geom_text(stat='identity',aes(label=tweet_cnt), vjust=1.6, color="Black", size=4.5)+scale_fill_manual(values=c("B"="blue", "R"="Red", "T"="orange"))+ggtitle('Number of tweets in different states')+labs(x = NULL,y = 'Number of tweets')
 ```{r}
 
-```{r fig.width=10 fig.height = 15}
+```{r fig.width=10,fig.height = 15}
 # tweet average polarity in different states
 # B: Blue state | R: Red state | T: Tossup state
-ggplot(data=st, mapping=aes(x=reorder(state,avg_polarity), y=avg_polarity, fill=BR))+geom_bar(stat='identity')+coord_flip()+geom_text(stat='identity',aes(label=avg_polarity), vjust=1.6, color="Black", size=4.5)+scale_fill_manual(values=c("B"="blue", "R"="Red", "T"="orange"))+ggtitle('Mean polarity of tweet in different state')+labs(x = NULL,y = 'Mean polarity of tweets')
+ggplot(data=st, mapping=aes(x=reorder(state,avg_polarity), y=avg_polarity, fill=BR))+geom_bar(stat='identity')+coord_flip()+geom_text(stat='identity',aes(label=avg_polarity), vjust=1.6, color="Black", size=4.5)+scale_fill_manual(values=c("B"="blue", "R"="Red", "T"="orange"))+ggtitle('Mean polarity of tweet in different states')+labs(x = NULL,y = 'Mean polarity of tweets')
 ```{r}
 
 ```{r}
@@ -61,25 +54,25 @@ p + geom_col() +
   scale_fill_manual(values=c("B"="blue", "R"="Red", "T"="orange"))
 ```{r}
 
-```{r fig.width=10 fig.height = 15 }
+```{r}
 # tweet count in B/R/T states
 # B: Blue state | R: Red state | T: Tossup state
-ggplot(data=bt, mapping=aes(x=reorder(state, tweet_cnt),y = tweet_cnt, fill=state))+geom_bar(stat='identity')+coord_flip()+geom_text(stat='identity',aes(label=tweet_cnt), vjust=1.6, color="Black", size=4.5)+scale_fill_manual(values=c("B"="blue", "R"="Red", "T"="orange"))+ggtitle('Number of tweet count in Blue/Red/Tossup state')+labs(x = NULL,y = 'Number of tweets')
+ggplot(data=bt, mapping=aes(x=reorder(state, tweet_cnt),y = tweet_cnt, fill=state))+geom_bar(stat='identity')+coord_flip()+geom_text(stat='identity',aes(label=tweet_cnt), vjust=1.6, color="Black", size=4.5)+scale_fill_manual(values=c("B"="blue", "R"="Red", "T"="orange"))+ggtitle('Number of tweets in Blue/Red/Tossup state')+labs(x = NULL,y = 'Number of tweets')
 ```{r}
 
 ```{r}
+# Tweets share in B/R/T states
 p <- ggplot(data = bt, mapping = aes(x = 1, y = tweet_cnt, fill = state ))
-p + geom_col(position = "stack") +
-  scale_x_continuous(breaks = NULL, name = NULL) +
-  labs(fill = "state", y = "Number of tweets") +
+p + geom_col() +
+  coord_polar(theta = "y") +
+  scale_x_continuous(name = NULL, breaks = NULL) +
+  scale_y_continuous(name = NULL, breaks = NULL) +
+  labs(fill = "State") +
   scale_fill_manual(values=c("B"="blue", "R"="Red", "T"="orange"))
 ```{r}
 
-```{r fig.width=10 fig.height = 15 }
+```{r}
 # Mean polarity of tweets in B/R/T states
 # B: Blue state | R: Red state | T: Tossup state
 ggplot(data=bt, mapping=aes(x=reorder(state, BRT_avg_polarity),y = BRT_avg_polarity, fill=state))+geom_bar(stat='identity')+coord_flip()+geom_text(stat='identity',aes(label=BRT_avg_polarity), vjust=1.6, color="Black", size=4.5)+scale_fill_manual(values=c("B"="blue", "R"="Red", "T"="orange"))+ggtitle('Mean polarity of tweet in Blue/Red/Tossup state')+labs(x = NULL,y = 'Mean polarity of tweets')
 ```{r}
-
-
-
