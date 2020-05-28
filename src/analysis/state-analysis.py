@@ -41,6 +41,11 @@ tweet_cnt = [0 for i in range(51)]
 avg_polarity = [0 for i in range(51)]
 BR = [0 for i in range(51)]
 
+BRT = ['B', 'R', 'T']
+BRT_cnt = [0, 0, 0]
+BRT_tcnt = [0, 0, 0]
+BRT_avg_polarity = [0.0, 0.0, 0.0]
+
 # Blue/Red state classify
 for idx in range(len(BR)):
     BR[idx] = get_BR(state_ab[idx])
@@ -57,6 +62,13 @@ for i, j in data.iterrows():
         idx = state_ab.index(state)
         tweet_cnt[idx] += 1
         avg_polarity[idx] += j['polarity']
+        if BR[idx] == 'B':
+            BRT_avg_polarity[0] += j['polarity']
+        if BR[idx] == 'R':
+            BRT_avg_polarity[1] += j['polarity']
+        if BR[idx] == 'T':
+            BRT_avg_polarity[2] += j['polarity']
+
     except:
         print('error occur')
 
@@ -64,7 +76,7 @@ for i, j in data.iterrows():
 for p in range(len(avg_polarity)):
     if tweet_cnt[p]!=0:
         avg_polarity[p] = avg_polarity[p]/tweet_cnt[p]
-        avg_polarity[p] = format(avg_polarity[p], '.3f')
+        avg_polarity[p] = float(format(avg_polarity[p], '.3f'))
     else:
         avg_polarity[p] = 0
 data.head()
@@ -77,6 +89,35 @@ dt = {
 }
 state_dt = pd.DataFrame(dt)
 
+# BR state table generation
+
+
+for idx in range(len(state_ab)):
+    if BR[idx] == 'B':
+        BRT_cnt[0] += 1
+        BRT_tcnt[0] += tweet_cnt[idx]
+        continue
+    if BR[idx] == 'R':
+        BRT_cnt[1] += 1
+        BRT_tcnt[1] += tweet_cnt[idx]
+        continue
+    if BR[idx] == 'T':
+        BRT_cnt[2] += 1
+        BRT_tcnt[2] += tweet_cnt[idx]
+        continue
+
+for i in range(len(BRT_avg_polarity)):
+    BRT_avg_polarity[i] = BRT_avg_polarity[i]/BRT_tcnt[i]
+
+bt = {
+    'state':BRT,
+    'state_count':BRT_cnt,
+    'tweet_cnt': BRT_tcnt,
+    'BRT_avg_polarity':BRT_avg_polarity,
+}
+brt_dt = pd.DataFrame(bt)
+
 os.makedirs('../../gen/analysis/temp/', exist_ok=True)
 
 state_dt.to_csv('../../gen/analysis/temp/state-analysis.csv', index = False, sep='\t')
+brt_dt.to_csv('../../gen/analysis/temp/BRstate-analysis.csv', index = False, sep='\t')
