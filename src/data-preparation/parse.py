@@ -60,7 +60,7 @@ for line in con:
         nohashtag_cnt += 1
 
 
-# 19989 tweets reserved
+# 19989 tweets preserved
 # 23237 records have been cleaned because they lack location information
 # 20630 records have been cleaned because of incorrect hashtag
 
