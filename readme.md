@@ -1,10 +1,12 @@
 # Research workflow: JSON parsing and text mining in Python, R + RMarkdown
-This is a team project of course Research in Social Media(RSM) in Tilburg university, aiming to solve the following research question:
+This is a team project of course Research in Social Media(RSM) in Tilburg university, aiming to solve the research question by analysing tweets collected on the White House Press briefings from Twitter.
+
+Research question:
 How do US Twitter users react to a WH coronavirus press conference according to the main political affiliation of their state?
 
 In this project, the following is completed:
 - Pipeline stage "data-preparation"
-  - Download raw JSON data in a zip file
+  - Download raw dataset in a zip file
   - Unzip data
   - Precleaning and parse JSON data to CSV file 
   - Load CSV file, and enrich textual data with text mining metrics using Python's TextBlob package for sentiment analysis
