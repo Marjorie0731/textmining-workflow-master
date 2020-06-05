@@ -1,18 +1,23 @@
-#  Reproducible research workflow: JSON parsing and text mining in Python, R + RMarkdown
+# Research workflow: JSON parsing and text mining in Python, R + RMarkdown
+This is a team project of course Research in Social Media(RSM) in Tilburg university, aiming to solve the following research question:
+How do US Twitter users react to a WH coronavirus press conference according to the main political affiliation of their state?
 
-This is a textmining and statistics analysis workflow using GNU Make, Python and R for a reproducible research workflow.
-
-In this RSM project, the following is done:
+In this project, the following is completed:
 - Pipeline stage "data-preparation"
   - Download raw JSON data in a zip file
   - Unzip data
-  - Parse JSON data to CSV file
+  - Precleaning and parse JSON data to CSV file 
   - Load CSV file, and enrich textual data with text mining metrics using Python's TextBlob package for sentiment analysis
-- Pipeline stage "analysis"
-  - Load final output file from previous pipeline stage, run precleaning code
-  - Produce RMarkdown HTML output with simple statistics
   
+- Pipeline stage "analysis"
+  - Load output file from previous pipeline stage, run analysis code
+  - Produce RMarkdown HTML output with statistics
+  
+## Dataset
+The raw dataset contains 63,856 tweet objects on the White House Press briefings from Twitter. They feature either of the hashtags '#coronavirus', '#DonaldTrump', '#Trump', '#PresidentTrump','#PressBriefing', '#WhiteHouse', '#PressConference', '#Whitehousebriefing','#reopenamerica', and '#coronavirustaskforce'. Each tweet object is stored in JSON format, containing basic information of the tweet such as creating time, text content, user information, etc. 
+
 ## Dependencies
+
 - Python via the Anaconda distribution
 - TextBlob via `pip install -U textblob`
 - NLTK dictionaries; open Python, then type
